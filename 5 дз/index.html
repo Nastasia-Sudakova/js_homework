@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- Задача 1 -->
+    <h1>Задача 1</h1>
+    <button id="clickButton">Нажми меня</button>
+    <p>Количество нажатий: <span id="clickCount">0</span></p>
+    <p id="message"></p>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        let count = 0;
+        const button = document.getElementById("clickButton");
+        const display = document.getElementById("clickCount");
+        const message = document.getElementById("message");
+
+        button.addEventListener("click", function () {
+          count++;
+          display.textContent = count;
+
+          if (count >= 15) {
+            button.disabled = true;
+            message.textContent =
+              "Вы достигли максимального количества кликов!";
+          }
+        });
+      });
+    </script>
+
+    <!-- Задача 2 -->
+    <h2>Задача 2</h2>
+
+    <p1>Осталось времени: <span id="timer">10</span></p1>
+    <button id="resetButton">Сбросить таймер</button>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        let count = 10;
+        const display = document.getElementById("timer");
+        const resetButton = document.getElementById("resetButton");
+        let interval;
+
+        function startTimer() {
+          interval = setInterval(function () {
+            count--;
+            display.textContent = count;
+
+            if (count <= 0) {
+              clearInterval(interval);
+              display.textContent = "Время вышло!";
+            }
+          }, 1000);
+        }
+
+        resetButton.addEventListener("click", function () {
+          clearInterval(interval);
+          count = 10;
+          display.textContent = count;
+          startTimer();
+        });
+
+        startTimer();
+      });
+    </script>
+
+    <!-- Задача 3 -->
+    <h3>Задача 3</h3>
+
+    <p3>Таймер: <span id="timer">0</span></p3>
+    <button id="startButton">Старт</button>
+    <button id="stopButton">Стоп</button>
+    <button id="resetButton">Сброс</button>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        let count = 0;
+        let interval;
+        const display = document.getElementById("timer");
+        const startButton = document.getElementById("startButton");
+        const stopButton = document.getElementById("stopButton");
+        const resetButton = document.getElementById("resetButton");
+
+        startButton.addEventListener("click", function () {
+          if (!interval) {
+            interval = setInterval(function () {
+              count++;
+              display.textContent = count;
+            }, 1000);
+          }
+        });
+
+        stopButton.addEventListener("click", function () {
+          clearInterval(interval);
+          interval = null;
+        });
+
+        resetButton.addEventListener("click", function () {
+          clearInterval(interval);
+          interval = null;
+          count = 0;
+          display.textContent = count;
+        });
+      });
+    </script>
+  </body>
+</html>
